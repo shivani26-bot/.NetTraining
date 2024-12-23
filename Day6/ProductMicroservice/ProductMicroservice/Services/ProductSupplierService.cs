@@ -133,10 +133,10 @@ namespace ProductMicroservice.Services
             {
                 throw new Exception("Product not found");
             }
-            if (product.StockToBeAdded <= 0)
-            {
-                throw new Exception("Quantity cannot be less than or equal to 0");
-            }
+            //if (product.StockToBeAdded <= 0)
+            //{
+            //    throw new Exception("Quantity cannot be less than or equal to 0");
+            //}
             var result = await InsertIntoAuditLog("Product", "Stock", prod.StockAvailable, prod.StockAvailable + product.StockToBeAdded);
             prod.StockAvailable += product.StockToBeAdded;
 
