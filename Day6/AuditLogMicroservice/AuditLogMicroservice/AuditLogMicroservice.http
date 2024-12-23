@@ -1,0 +1,6 @@
+@AuditLogMicroservice_HostAddress = http://localhost:5286
+
+GET {{AuditLogMicroservice_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
