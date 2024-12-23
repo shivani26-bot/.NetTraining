@@ -1,0 +1,34 @@
+@FirstAPI_HostAddress = http://localhost:5172
+
+GET {{FirstAPI_HostAddress}}/api/Employee/
+Accept: application/json
+
+###
+POST {{FirstAPI_HostAddress}}/api/Employee/
+Accept: application/json
+Content-Type: application/json
+{
+  "id": 1,
+  "name": "shivani",
+  "age": 24,
+  "salary": 80000
+}
+
+###
+
+@employee_id=0
+DELETE {{FirstAPI_HostAddress}}/api/employee?employee_id={{employee_id}}
+
+###
+
+PUT {{FirstAPI_HostAddress}}/api/employee?employee_id=2
+Content-Type: application/json
+
+{
+  "id":2,
+  "name": "shivani sharma",
+  "age": 28,
+  "salary": 80675000
+}
+
+###
