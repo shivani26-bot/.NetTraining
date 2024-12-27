@@ -5,7 +5,7 @@ using UserManagementAPI.Models;
 
 namespace UserManagementAPI.Repository
 {
-    public class UserRepository : IRepository
+    public class UserRepository : IUserRepository<int, User> // K = int, T = User
     {
         private readonly AppDbContext _context;
 
@@ -14,21 +14,25 @@ namespace UserManagementAPI.Repository
             _context = context;
         }
 
-        public async Task<User> RegisterUserAsync(User user)
+        public async Task<User> GetUserById(int key)
         {
-            _context.Users.Add(user);
+            // Find user by Id (UId)
+            return await _context.Users
+                .FirstOrDefaultAsync(u => u.UId == key);
+        }
+
+        public async Task<ICollection<User>> GetAll()
+        {
+            // Get all users
+            return await _context.Users.ToListAsync();
+        }
+
+        public async Task<User> AddUser(User entity)
+        {
+            // Add a new user to the database
+            await _context.Users.AddAsync(entity);
             await _context.SaveChangesAsync();
-            return user;
-        }
-
-        public async Task<User> AuthenticateUserAsync(string email, string password)
-        {
-            return await _context.Users.FirstOrDefaultAsync(u => u.Email == email && u.Password == password);
-        }
-
-        public async Task<User> GetUserByIdAsync(int id)
-        {
-            return await _context.Users.FindAsync(id);
+            return entity; // Return the added user
         }
     }
 }

@@ -4,8 +4,8 @@ namespace UserManagementAPI.Interfaces
 {
     public interface IUserService
     {
-        Task<UserResponseDto> RegisterUserAsync(RegisterDto registerDto);
-        Task<string> AuthenticateUserAsync(LoginDto loginDto);
-        Task<UserResponseDto> GetUserByIdAsync(int id);
+        public Task<UserResponseDto> Login(LoginRequestDto loginRequest);
+        public Task<UserResponseDto> Register(RegisterRequestDto userRequest);
+        Task<UserResponseDto> GetUserById(int id);
     }
 }

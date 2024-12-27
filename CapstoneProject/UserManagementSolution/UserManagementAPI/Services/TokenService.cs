@@ -17,10 +17,12 @@ namespace UserManagementAPI.Services
         }
         public async Task<string> GenerateToken(UserResponseDto user)
         {
+
+       
             List<Claim> claims = new List<Claim>()
             {
-                new Claim(ClaimTypes.Name, user.UserName),
-                new Claim(ClaimTypes.Role, user.Role)
+                new Claim(ClaimTypes.Name, user.Username),
+                new Claim(ClaimTypes.Role, user.Role.ToString())
             };
             var symmetricSecurityKey = new SymmetricSecurityKey(_key);
             var signingCredentials = new SigningCredentials(symmetricSecurityKey, SecurityAlgorithms.HmacSha256);

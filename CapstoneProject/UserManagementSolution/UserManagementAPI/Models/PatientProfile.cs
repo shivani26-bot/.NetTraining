@@ -11,10 +11,6 @@ namespace UserManagementAPI.Models
 
         public string  MedicalHistory { get; set; }=string.Empty;
         public string InsuranceDetails { get; set; } = string.Empty;
-
-        //public int UserId { get; set; }
-        //public User User { get; set; }
-
         public int? UId { get; set; }
 
         [ForeignKey("UId")]
